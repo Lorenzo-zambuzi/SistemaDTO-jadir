@@ -12,7 +12,7 @@ public class Aluno {
 	
 	// Atributos																												/_/
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int ra;
+	private Integer ra;
 	private String nome;
 	private String email;
 	private String endereco;
@@ -22,7 +22,7 @@ public class Aluno {
 	// construtor																												/_/
 	public Aluno() {}
 
-	public Aluno(int ra, String nome, String email, String endereco, Date dataNascimento, String periodo) {
+	public Aluno(Integer ra, String nome, String email, String endereco, Date dataNascimento, String periodo) {
 		super();
 		this.ra = ra;
 		this.nome = nome;
@@ -34,11 +34,11 @@ public class Aluno {
 	
 	
 	// getters e setters																										/_/
-	public int getRa() {
+	public Integer getRa() {
 		return ra;
 	}
 
-	public void setRa(int ra) {
+	public void setRa(Integer ra) {
 		this.ra = ra;
 	}
 

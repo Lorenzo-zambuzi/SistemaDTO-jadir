@@ -49,5 +49,10 @@ public class AlunoService {
 	public void deleteAluno(int ra) {
 		alunoRepository.deleteById(ra);
 	}
+	
+	// Método para criar ou atualizar aluno - AlunoService
+	public Aluno saveAluno(Aluno aluno) {
+		return alunoRepository.save(aluno);
+	}
 
 }

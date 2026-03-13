@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +31,7 @@ public class AlunoController {
 		return alunoService.listarTodos();
 	}
 	
-	@GetMapping ("/ra/{ra}")
+	@GetMapping ("/{ra}")
 	public Aluno buscarPorId(@PathVariable int ra){
 		Aluno aluno = alunoService.buscarPorId(ra);
 		return aluno;
@@ -58,9 +59,32 @@ public class AlunoController {
 	}
 	
 	
+	// Delete
 	@DeleteMapping("/{ra}")
 	public String delete(@PathVariable int ra) {
 		alunoService.deleteAluno(ra);
 		return "Aluno deletado com sucesso!";
+	}
+	
+	// criar
+	@PostMapping
+	public Aluno insert(@RequestBody Aluno aluno) {
+		alunoService.saveAluno(aluno);
+		return aluno;
+	}
+	
+	// post para criar, put para alterar
+	
+	// atualizar
+	@PutMapping("/{id}")
+	public Aluno update(@RequestBody Aluno aluno, 
+			@PathVariable Integer id) {
+		Aluno alunoUpdate = alunoService.buscarPorId(id);
+		alunoUpdate.setNome(aluno.getNome());
+		alunoUpdate.setEmail(aluno.getEmail());
+		alunoUpdate.setEndereco(aluno.getEndereco());
+		alunoUpdate.setDataNascimento(aluno.getDataNascimento());
+		alunoUpdate.setPeriodo(aluno.getPeriodo());
+		return alunoService.saveAluno(alunoUpdate);
 	}
 }
